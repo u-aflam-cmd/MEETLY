@@ -1,0 +1,1361 @@
+/* ===============================
+   MEETLY
+================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0b1120;
+    color: white;
+    min-height: 100vh;
+    transition: 0.3s;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ===============================
+   HEADER
+================================ */
+
+.header {
+    min-height: 70px;
+    background: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 35px;
+    border-bottom: 1px solid #1f2937;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.logo-icon {
+    width: 38px;
+    height: 38px;
+    background: #2563eb;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    gap: 8px;
+}
+
+nav button {
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+nav button:hover {
+    background: #1e293b;
+    color: white;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.theme-button,
+.sign-out-button {
+    border: none;
+    border-radius: 8px;
+    padding: 9px 13px;
+    cursor: pointer;
+}
+
+.theme-button {
+    background: #1e293b;
+    color: white;
+}
+
+.sign-out-button {
+    background: #dc2626;
+    color: white;
+}
+
+
+/* ===============================
+   NOTIFICATIONS
+================================ */
+
+.icon-button {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 10px;
+    background: #1e293b;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.icon-button:hover {
+    background: #2563eb;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    min-width: 19px;
+    height: 19px;
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ef4444;
+    color: white;
+    border-radius: 50%;
+    border: 2px solid #111827;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.notification-panel {
+    position: fixed;
+    top: 78px;
+    right: 25px;
+    width: 380px;
+    max-width: calc(100vw - 30px);
+    background: #111827;
+    border: 1px solid #263449;
+    border-radius: 14px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+    z-index: 2000;
+    overflow: hidden;
+}
+
+.notification-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 18px;
+    border-bottom: 1px solid #263449;
+}
+
+.notification-header h2 {
+    font-size: 20px;
+}
+
+.notification-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.notifications-list {
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+.notification-item {
+    padding: 16px 18px;
+    border-bottom: 1px solid #263449;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.notification-item:hover {
+    background: #172033;
+}
+
+.notification-item.unread {
+    background: #172554;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-title {
+    margin-bottom: 5px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.notification-message {
+    color: #cbd5e1;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.notification-time {
+    display: block;
+    margin-top: 8px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.empty-notifications {
+    text-align: center;
+    padding: 35px 20px;
+    color: #94a3b8;
+}
+
+
+/* ===============================
+   HOME
+================================ */
+
+.home-section {
+    min-height: calc(100vh - 130px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.welcome h1 {
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.welcome p {
+    color: #94a3b8;
+    font-size: 17px;
+}
+
+.home-buttons {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 280px;
+}
+
+.main-button {
+    width: 100%;
+    padding: 15px 20px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.main-button:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+
+/* ===============================
+   CONTENT
+================================ */
+
+.content-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 45px 25px;
+    min-height: calc(100vh - 130px);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.section-header h2 {
+    font-size: 30px;
+}
+
+.back-button {
+    background: #1e293b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background: #334155;
+}
+
+
+/* ===============================
+   CARDS
+================================ */
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.meeting-card,
+.call-card {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.meeting-card h3,
+.call-card h3 {
+    margin-bottom: 10px;
+}
+
+.card-info {
+    color: #94a3b8;
+    margin-bottom: 7px;
+    font-size: 14px;
+}
+
+.room-id {
+    margin-top: 12px;
+    background: #0f172a;
+    border: 1px solid #1e3a8a;
+    padding: 10px;
+    border-radius: 8px;
+    color: #60a5fa;
+    font-family: monospace;
+}
+
+.card-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+
+.card-buttons button {
+    border: none;
+    border-radius: 8px;
+    padding: 9px 12px;
+    cursor: pointer;
+    color: white;
+}
+
+.start-button {
+    background: #16a34a;
+}
+
+.start-button:hover {
+    background: #15803d;
+}
+
+.share-button {
+    background: #2563eb;
+}
+
+.share-button:hover {
+    background: #1d4ed8;
+}
+
+.delete-button {
+    background: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 12px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background: #b91c1c;
+}
+
+
+/* ===============================
+   CALENDAR
+================================ */
+
+.calendar-description {
+    color: #94a3b8;
+    margin-top: 7px;
+    font-size: 15px;
+}
+
+.calendar-container {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.calendar-header h2 {
+    font-size: 22px;
+    text-align: center;
+}
+
+.calendar-nav-button {
+    width: 42px;
+    height: 38px;
+    font-size: 18px;
+}
+
+.calendar-weekdays,
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 7px;
+}
+
+.calendar-weekdays {
+    margin-bottom: 7px;
+}
+
+.calendar-weekdays div {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 10px 5px;
+}
+
+.calendar-day {
+    min-height: 85px;
+    background: #0f172a;
+    border: 1px solid #1f2937;
+    border-radius: 9px;
+    padding: 9px;
+    cursor: pointer;
+    transition: 0.2s;
+    position: relative;
+}
+
+.calendar-day:hover {
+    border-color: #2563eb;
+    background: #172033;
+    transform: translateY(-1px);
+}
+
+.calendar-day.empty {
+    background: transparent;
+    border: none;
+    cursor: default;
+}
+
+.calendar-day.empty:hover {
+    transform: none;
+}
+
+.calendar-day-number {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.calendar-day.today {
+    border: 2px solid #2563eb;
+}
+
+.calendar-day.selected {
+    background: #172554;
+    border-color: #3b82f6;
+}
+
+.calendar-day.has-meeting::after {
+    content: "";
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 7px;
+    height: 7px;
+    background: #3b82f6;
+    border-radius: 50%;
+}
+
+.calendar-day-meeting-count {
+    margin-top: 10px;
+    color: #60a5fa;
+    font-size: 11px;
+}
+
+.selected-date-meetings {
+    margin-top: 25px;
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 15px;
+    padding: 22px;
+}
+
+.selected-date-meetings h2 {
+    margin-bottom: 15px;
+}
+
+.selected-date-meetings > p {
+    color: #94a3b8;
+}
+
+.calendar-meeting-card {
+    background: #0f172a;
+    border: 1px solid #1f2937;
+    border-left: 4px solid #2563eb;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 12px;
+}
+
+.calendar-meeting-card h3 {
+    margin-bottom: 8px;
+}
+
+.calendar-meeting-card p {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+
+/* ===============================
+   MEETING ROOM
+================================ */
+
+.meeting-room {
+    min-height: calc(100vh - 130px);
+    padding: 30px;
+    max-width: 1250px;
+    margin: auto;
+}
+
+.meeting-room-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.meeting-room-header h2 {
+    font-size: 28px;
+}
+
+#meetingStatus {
+    color: #94a3b8;
+    margin-top: 6px;
+}
+
+.room-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.room-info span {
+    color: #94a3b8;
+}
+
+.room-info strong {
+    color: #60a5fa;
+    font-family: monospace;
+}
+
+.room-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.small-button {
+    border: none;
+    background: #1e293b;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.small-button:hover {
+    background: #334155;
+}
+
+
+/* ===============================
+   VIDEO GRID
+================================ */
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 15px;
+    background: #020617;
+    border-radius: 15px;
+    padding: 12px;
+    min-height: 500px;
+}
+
+.video-card {
+    position: relative;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 260px;
+}
+
+.video-card video {
+    width: 100%;
+    height: 100%;
+    min-height: 260px;
+    object-fit: cover;
+    display: block;
+    background: #000;
+}
+
+.video-label {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 7px 12px;
+    border-radius: 7px;
+    font-size: 13px;
+}
+
+.remote-video-card {
+    border: 1px solid #1e3a8a;
+}
+
+
+/* ===============================
+   CONTROLS
+================================ */
+
+.meeting-controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.control-button {
+    border: none;
+    background: #1e293b;
+    color: white;
+    padding: 12px 17px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.control-button:hover {
+    background: #334155;
+}
+
+.end-button {
+    background: #dc2626;
+}
+
+.end-button:hover {
+    background: #b91c1c;
+}
+
+
+/* ===============================
+   MODALS
+================================ */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 3000;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 450px;
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 15px;
+    padding: 28px;
+    position: relative;
+}
+
+.modal-content h2 {
+    margin-bottom: 25px;
+}
+
+.close-button {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    background: transparent;
+    color: #94a3b8;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+form label {
+    color: #cbd5e1;
+    margin-top: 8px;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 12px;
+    background: #0f172a;
+    color: white;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    outline: none;
+}
+
+form textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+    border-color: #2563eb;
+}
+
+.submit-button {
+    margin-top: 15px;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background: #1d4ed8;
+}
+
+
+/* ===============================
+   PROFILE
+================================ */
+
+.profile-container {
+    max-width: 650px;
+    margin: 0 auto;
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.profile-picture-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+#profilePicture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #2563eb;
+    background: #1e293b;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-form label {
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.profile-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    background: #0f172a;
+    color: white;
+    font-size: 15px;
+    outline: none;
+}
+
+.profile-form input:focus {
+    border-color: #2563eb;
+}
+
+#saveProfileButton {
+    margin-top: 15px;
+    width: 100%;
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 13px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#saveProfileButton:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+#saveProfileButton:active {
+    transform: translateY(0);
+}
+
+
+/* ===============================
+   FRIENDS
+================================ */
+
+.friends-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.add-friend-box,
+.friend-requests,
+.friends-list {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.add-friend-box h3,
+.friend-requests h3,
+.friends-list h3 {
+    margin-top: 0;
+    margin-bottom: 18px;
+}
+
+.add-friend-form {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+}
+
+#friendUsername {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    background: #0f172a;
+    color: white;
+    font-size: 15px;
+    outline: none;
+}
+
+#friendUsername:focus {
+    border-color: #2563eb;
+}
+
+
+/* ADD FRIEND BUTTON */
+
+#addFriendButton {
+    width: 160px;
+    height: 46px;
+    flex-shrink: 0;
+
+    background: #2563eb;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 0;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s ease;
+}
+
+#addFriendButton:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+#addFriendButton:active {
+    transform: translateY(0);
+}
+
+
+/* FRIEND ITEMS */
+
+.friend-item,
+.friend-request-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+}
+
+.friend-item:last-child,
+.friend-request-item:last-child {
+    margin-bottom: 0;
+}
+
+.friend-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.friend-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #2563eb;
+}
+
+.friend-name {
+    font-weight: bold;
+}
+
+.friend-username {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.friend-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.friend-actions button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.accept-friend {
+    background: #2563eb;
+    color: white;
+}
+
+.accept-friend:hover {
+    background: #1d4ed8;
+}
+
+.decline-friend,
+.remove-friend {
+    background: #374151;
+    color: white;
+}
+
+.decline-friend:hover,
+.remove-friend:hover {
+    background: #4b5563;
+}
+
+
+/* ===============================
+   FOOTER
+================================ */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #64748b;
+    border-top: 1px solid #1f2937;
+}
+
+
+/* ===============================
+   LIGHT MODE
+================================ */
+
+body.light-mode {
+    background: #f5f5f5;
+    color: #111827;
+}
+
+body.light-mode .header,
+body.light-mode .meeting-card,
+body.light-mode .call-card,
+body.light-mode .modal-content,
+body.light-mode .calendar-container,
+body.light-mode .selected-date-meetings,
+body.light-mode .profile-container,
+body.light-mode .add-friend-box,
+body.light-mode .friend-requests,
+body.light-mode .friends-list {
+    background: white;
+    border-color: #e5e7eb;
+}
+
+body.light-mode nav button {
+    color: #374151;
+}
+
+body.light-mode .theme-button,
+body.light-mode .back-button,
+body.light-mode .small-button,
+body.light-mode .control-button {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+body.light-mode .welcome p,
+body.light-mode .card-info,
+body.light-mode .calendar-description,
+body.light-mode .selected-date-meetings > p {
+    color: #64748b;
+}
+
+body.light-mode form input,
+body.light-mode form textarea,
+body.light-mode form select,
+body.light-mode .profile-form input,
+body.light-mode #friendUsername {
+    background: white;
+    color: #111827;
+    border-color: #d1d5db;
+}
+
+body.light-mode .room-id {
+    background: #eff6ff;
+    color: #1d4ed8;
+}
+
+body.light-mode .icon-button {
+    background: #e2e8f0;
+    color: #111827;
+}
+
+body.light-mode .icon-button:hover {
+    background: #2563eb;
+    color: white;
+}
+
+body.light-mode .notification-badge {
+    border-color: #f8fafc;
+}
+
+body.light-mode .notification-panel {
+    background: white;
+    border-color: #d1d5db;
+}
+
+body.light-mode .notification-header {
+    border-bottom-color: #e5e7eb;
+}
+
+body.light-mode .notification-item {
+    border-bottom-color: #e5e7eb;
+}
+
+body.light-mode .notification-item:hover {
+    background: #f8fafc;
+}
+
+body.light-mode .notification-item.unread {
+    background: #eff6ff;
+}
+
+body.light-mode .notification-message {
+    color: #475569;
+}
+
+body.light-mode .calendar-day {
+    background: #f8fafc;
+    border-color: #e5e7eb;
+}
+
+body.light-mode .calendar-day:hover {
+    background: #eff6ff;
+}
+
+body.light-mode .calendar-day.selected {
+    background: #dbeafe;
+}
+
+body.light-mode .calendar-meeting-card {
+    background: #f8fafc;
+    border-color: #e5e7eb;
+}
+
+body.light-mode .friend-item,
+body.light-mode .friend-request-item {
+    background: #f8fafc;
+    border-color: #e5e7eb;
+}
+
+body.light-mode .friend-username {
+    color: #64748b;
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+    .header {
+        height: auto;
+        padding: 15px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .welcome h1 {
+        font-size: 30px;
+    }
+
+    .meeting-room {
+        padding: 20px 12px;
+    }
+
+    .meeting-room-header {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    .video-grid {
+        grid-template-columns: 1fr;
+        min-height: 300px;
+    }
+
+    .video-card,
+    .video-card video {
+        min-height: 220px;
+    }
+
+    .section-header {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    .notification-panel {
+        top: 70px;
+        right: 10px;
+        width: calc(100vw - 20px);
+    }
+
+    .notification-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .notification-actions {
+        width: 100%;
+    }
+
+    .notification-actions button {
+        flex: 1;
+    }
+
+    .calendar-container {
+        padding: 10px;
+    }
+
+    .calendar-weekdays,
+    .calendar-days {
+        gap: 3px;
+    }
+
+    .calendar-weekdays div {
+        font-size: 11px;
+        padding: 7px 2px;
+    }
+
+    .calendar-day {
+        min-height: 55px;
+        padding: 6px;
+    }
+
+    .calendar-day-number {
+        font-size: 12px;
+    }
+
+    .calendar-day-meeting-count {
+        font-size: 9px;
+        margin-top: 6px;
+    }
+
+    .calendar-day.has-meeting::after {
+        bottom: 5px;
+        width: 5px;
+        height: 5px;
+    }
+
+    .calendar-header h2 {
+        font-size: 18px;
+    }
+
+    .profile-container {
+        padding: 20px;
+    }
+
+    #profilePicture {
+        width: 120px;
+        height: 120px;
+    }
+
+    .add-friend-form {
+        flex-direction: column;
+    }
+
+    #addFriendButton {
+        width: 100%;
+    }
+
+    .friend-item,
+    .friend-request-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .friend-actions {
+        width: 100%;
+    }
+
+    .friend-actions button {
+        flex: 1;
+    }
+}
+
+/* FRIENDS SYSTEM ADDITIONS */
+
+.friend-id-row {
+    display: flex;
+    gap: 10px;
+    margin: 12px 0 25px;
+}
+
+.friend-id-row input,
+#friendPeerId,
+#friendUsername {
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    background: #0f172a;
+    color: white;
+}
+
+.friend-id-row input {
+    flex: 1;
+}
+
+#friendPeerId {
+    width: 100%;
+    margin: 10px 0;
+}
+
+#addFriendButton {
+    width: 100%;
+    min-height: 44px;
+}
+
+#friendSystemStatus {
+    margin-top: 12px;
+    color: #93c5fd;
+    overflow-wrap: anywhere;
+}
+
+.friend-item,
+.friend-request-item {
+    overflow-wrap: anywhere;
+}
+
+body.light-mode .friend-id-row input,
+body.light-mode #friendPeerId,
+body.light-mode #friendUsername {
+    background: white;
+    color: #111827;
+    border-color: #d1d5db;
+}
+
+@media (max-width: 500px) {
+    .friend-id-row {
+        flex-direction: column;
+    }
+
+    .friend-id-row button {
+        min-height: 42px;
+    }
+}

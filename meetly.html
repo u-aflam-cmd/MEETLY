@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MEETLY</title>
+
+    <link rel="stylesheet" href="meetly.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="logo">
+            <div class="logo-icon">M</div>
+            <span>MEETLY</span>
+        </div>
+
+        <nav>
+            <button onclick="showHome()">Home</button>
+            <button onclick="showMeetings()">Meetings</button>
+            <button onclick="showCalls()">Calls</button>
+            <button onclick="showCalendar()">Calendar</button>
+            <button onclick="showProfile()">Profile</button>
+        </nav>
+
+        <div class="header-actions">
+
+            <button
+                id="notificationButton"
+                class="icon-button"
+                title="Notifications"
+            >
+                🔔
+                <span
+                    id="notificationBadge"
+                    class="notification-badge hidden"
+                >0</span>
+            </button>
+
+            <button
+                id="themeButton"
+                class="theme-button"
+                title="Change Theme"
+            >
+                🌙
+            </button>
+
+            <button
+                id="signOutButton"
+                class="sign-out-button"
+            >
+                Sign Out
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- NOTIFICATION PANEL -->
+    <div
+        id="notificationPanel"
+        class="notification-panel hidden"
+    >
+
+        <div class="notification-header">
+
+            <h2>Notifications</h2>
+
+            <div class="notification-actions">
+
+                <button
+                    id="markAllReadButton"
+                    class="small-button"
+                >
+                    Mark All Read
+                </button>
+
+                <button
+                    id="clearNotificationsButton"
+                    class="delete-button"
+                >
+                    Clear
+                </button>
+
+            </div>
+
+        </div>
+
+        <div
+            id="notificationsList"
+            class="notifications-list"
+        >
+            <p class="empty-notifications">
+                No notifications yet.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- HOME -->
+    <section
+        id="homeSection"
+        class="home-section"
+    >
+
+        <div class="welcome">
+
+            <h1>Welcome to MEETLY 👋</h1>
+
+            <p>
+                Organize your meetings and calls in one place.
+            </p>
+
+        </div>
+
+        <div class="home-buttons">
+
+            <button
+                class="main-button"
+                onclick="openMeetingModal()"
+            >
+                📅 Create Meeting
+            </button>
+
+            <button
+                class="main-button"
+                onclick="showMeetings()"
+            >
+                📋 View Meetings
+            </button>
+
+            <button
+                class="main-button"
+                onclick="showCalls()"
+            >
+                📞 Manage Calls
+            </button>
+
+            <button
+                class="main-button"
+                onclick="showCalendar()"
+            >
+                🗓️ Open Calendar
+            </button>
+
+            <button
+    id="friendsButton"
+    class="main-button"
+    onclick="showFriends()"
+>
+    👥 Friends
+</button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROFILE -->
+    <section
+        id="profileSection"
+        class="content-section hidden"
+    >
+
+        <div class="section-header">
+
+            <h2>Profile</h2>
+
+            <button
+                class="back-button"
+                onclick="showHome()"
+            >
+                ← Back
+            </button>
+
+        </div>
+
+        <div class="profile-container">
+
+            <div class="profile-picture-container">
+
+                <img
+                    id="profilePicture"
+                    src=""
+                    alt="Profile Picture"
+                >
+
+                <label
+                    for="profilePictureInput"
+                    class="small-button"
+                >
+                    Change Picture
+                </label>
+
+                <input
+                    type="file"
+                    id="profilePictureInput"
+                    accept="image/*"
+                    hidden
+                >
+
+            </div>
+
+            <div class="profile-form">
+
+                <label for="profileName">
+                    Name
+                </label>
+
+                <input
+                    type="text"
+                    id="profileName"
+                    placeholder="Enter your name"
+                >
+
+                <label for="profileEmail">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="profileEmail"
+                    placeholder="Enter your email"
+                >
+
+                <button
+                    id="saveProfileButton"
+                    class="primary-button"
+                >
+                    Save Profile
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FRIENDS -->
+<section id="friendsSection" class="content-section hidden">
+    <div class="section-header">
+        <h2>👥 Friends</h2>
+        <button class="back-button" onclick="showHome()">
+            ← Back
+        </button>
+    </div>
+
+    <div class="friends-container">
+        <div class="add-friend-box">
+            <h3>Your PeerJS ID</h3>
+            <p>Share your ID with a friend so they can connect.</p>
+
+            <div class="friend-id-row">
+                <input id="myPeerId" readonly
+                       placeholder="Connecting to PeerJS...">
+                <button id="copyPeerIdButton" class="small-button">
+                    Copy ID
+                </button>
+            </div>
+
+            <h3>Add a Friend</h3>
+            <input id="friendUsername"
+                   placeholder="Friend's username (optional)">
+
+            <input id="friendPeerId"
+                   placeholder="Enter your friend's PeerJS ID">
+
+            <button id="addFriendButton" class="add-friend-button">
+                ➕ Send Friend Request
+            </button>
+
+            <p id="friendSystemStatus" role="status"></p>
+        </div>
+
+        <div class="friend-requests">
+            <h3>Friend Requests</h3>
+            <div id="friendRequestsList">
+                <p>No friend requests.</p>
+            </div>
+        </div>
+
+        <div class="friends-list">
+            <h3>My Friends</h3>
+            <div id="friendsList">
+                <p>You don't have any friends yet.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- MEETINGS -->
+    <section
+        id="meetingsSection"
+        class="content-section hidden"
+    >
+
+        <div class="section-header">
+
+            <h2>Your Meetings</h2>
+
+            <button
+                class="back-button"
+                onclick="showHome()"
+            >
+                ← Back
+            </button>
+
+        </div>
+
+        <div
+            id="meetingsList"
+            class="cards-container"
+        ></div>
+
+    </section>
+
+
+    <!-- CALLS -->
+    <section
+        id="callsSection"
+        class="content-section hidden"
+    >
+
+        <div class="section-header">
+
+            <h2>Your Calls</h2>
+
+            <div>
+
+                <button
+                    class="main-button"
+                    style="width: auto;"
+                    onclick="openCallModal()"
+                >
+                    ➕ Add Call
+                </button>
+
+                <button
+                    class="back-button"
+                    onclick="showHome()"
+                >
+                    ← Back
+                </button>
+
+            </div>
+
+        </div>
+
+        <div
+            id="callsList"
+            class="cards-container"
+        ></div>
+
+    </section>
+
+
+    <!-- CALENDAR -->
+    <section
+        id="calendarSection"
+        class="content-section hidden"
+    >
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>Calendar</h2>
+
+                <p class="calendar-description">
+                    View your meetings by date.
+                </p>
+
+            </div>
+
+            <button
+                class="back-button"
+                onclick="showHome()"
+            >
+                ← Back
+            </button>
+
+        </div>
+
+        <div class="calendar-container">
+
+            <div class="calendar-header">
+
+                <button
+                    id="previousMonthButton"
+                    class="small-button calendar-nav-button"
+                >
+                    ←
+                </button>
+
+                <h2 id="calendarMonth">
+                    January 2026
+                </h2>
+
+                <button
+                    id="nextMonthButton"
+                    class="small-button calendar-nav-button"
+                >
+                    →
+                </button>
+
+            </div>
+
+            <div class="calendar-weekdays">
+
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+
+            </div>
+
+            <div
+                id="calendarDays"
+                class="calendar-days"
+            ></div>
+
+        </div>
+
+        <div
+            id="selectedDateMeetings"
+            class="selected-date-meetings"
+        >
+
+            <h2>Select a date</h2>
+
+            <p>
+                Click a date to see its meetings.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MEETING ROOM -->
+    <section
+        id="meetingRoom"
+        class="meeting-room hidden"
+    >
+
+        <div class="meeting-room-header">
+
+            <div>
+
+                <h2 id="activeMeetingTitle">
+                    Meeting Room
+                </h2>
+
+                <p id="meetingStatus">
+                    Connecting...
+                </p>
+
+                <div class="room-info">
+
+                    <span>Room ID:</span>
+
+                    <strong id="activeRoomId">
+                        ---
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <div class="room-actions">
+
+                <button
+                    id="copyRoomButton"
+                    class="small-button"
+                >
+                    📋 Copy Room
+                </button>
+
+                <button
+                    id="shareRoomButton"
+                    class="small-button share-button"
+                >
+                    🔗 Share
+                </button>
+
+                <button
+                    id="leaveMeetingButton"
+                    class="delete-button"
+                >
+                    Leave Meeting
+                </button>
+
+            </div>
+
+        </div>
+
+        <div
+            id="videoGrid"
+            class="video-grid"
+        >
+
+            <div
+                id="localVideoCard"
+                class="video-card"
+            >
+
+                <video
+                    id="localVideo"
+                    autoplay
+                    muted
+                    playsinline
+                ></video>
+
+                <div class="video-label">
+                    You
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="meeting-controls">
+
+            <button
+                id="micButton"
+                class="control-button"
+            >
+                🎤 Mic
+            </button>
+
+            <button
+                id="cameraButton"
+                class="control-button"
+            >
+                📹 Camera
+            </button>
+
+            <button
+                id="screenButton"
+                class="control-button"
+            >
+                🖥️ Share Screen
+            </button>
+
+            <button
+                id="endMeetingButton"
+                class="control-button end-button"
+            >
+                📞 End Meeting
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- CREATE MEETING MODAL -->
+    <div
+        id="meetingModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-content">
+
+            <button
+                id="closeMeetingModal"
+                class="close-button"
+            >
+                ×
+            </button>
+
+            <h2>Create Meeting</h2>
+
+            <form id="meetingForm">
+
+                <label for="meetingTitle">
+                    Meeting Title
+                </label>
+
+                <input
+                    type="text"
+                    id="meetingTitle"
+                    placeholder="Team Meeting"
+                    required
+                >
+
+                <label for="meetingDate">
+                    Date
+                </label>
+
+                <input
+                    type="date"
+                    id="meetingDate"
+                    required
+                >
+
+                <label for="meetingTime">
+                    Time
+                </label>
+
+                <input
+                    type="time"
+                    id="meetingTime"
+                    required
+                >
+
+                <label for="meetingNotes">
+                    Notes
+                </label>
+
+                <textarea
+                    id="meetingNotes"
+                    placeholder="Meeting notes..."
+                ></textarea>
+
+                <button
+                    type="submit"
+                    class="submit-button"
+                >
+                    Create Meeting
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ADD CALL MODAL -->
+    <div
+        id="callModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-content">
+
+            <button
+                id="closeCallModal"
+                class="close-button"
+            >
+                ×
+            </button>
+
+            <h2>Add Call</h2>
+
+            <form id="callForm">
+
+                <label for="callPerson">
+                    Person
+                </label>
+
+                <input
+                    type="text"
+                    id="callPerson"
+                    placeholder="Person's name"
+                    required
+                >
+
+                <label for="callDate">
+                    Date
+                </label>
+
+                <input
+                    type="date"
+                    id="callDate"
+                    required
+                >
+
+                <label for="callTime">
+                    Time
+                </label>
+
+                <input
+                    type="time"
+                    id="callTime"
+                    required
+                >
+
+                <label for="callType">
+                    Call Type
+                </label>
+
+                <select id="callType">
+
+                    <option value="Video Call">
+                        🎥 Video Call
+                    </option>
+
+                    <option value="Audio Call">
+                        🎤 Audio Call
+                    </option>
+
+                </select>
+
+                <label for="callNotes">
+                    Notes
+                </label>
+
+                <textarea
+                    id="callNotes"
+                    placeholder="Call notes..."
+                ></textarea>
+
+                <button
+                    type="submit"
+                    class="submit-button"
+                >
+                    Save Call
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 MEETLY. All rights reserved.
+        </p>
+
+    </footer>
+
+
+<script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
+<script src="meetly.js"></script>
+<script src="meetly-friends.js"></script>
+<script src="supabase-auth.js"></script>
+</body>
+</html>
